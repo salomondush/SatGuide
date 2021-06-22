@@ -15,14 +15,22 @@ import markdown2
 
 
 def index(request):
-    """loading the home page
+    """loads the home page (index.html)
     """
-    # return render(request, "scholarGuide/index.html", {
-    #     "entries": util.list_entries(),
-    #     "search": False
-    # })
+    
 
     return render(request, "scholarGuide/index.html")
+
+
+
+def blogs(request):
+    """Returns all blogs we've written so far using the query "util.list_entries()" to get all entries
+    we have made.
+    post: passes over that information to "scholarGuide/blogs.html"
+    """
+    
+    
+
 
 
 def title(request, title):
@@ -33,6 +41,7 @@ def title(request, title):
         return render(request, "scholarGuide/error.html", {"error": "Page Not Found!"}) 
     else:
         return render(request, "scholarGuide/title.html", {"entry": markdown2.markdown(entry), "title": title})
+
 
 def profile(request, school_id):
     """loads information about a specific school from the database to profile.html
@@ -62,6 +71,17 @@ def profile(request, school_id):
             "average_national_exams": school.average_percentage_ne,
             "average_grades": school.average_percentage_class
         })
+
+
+def schools(request):
+    """This function retrieves a list of all school objects in the School table
+    request: 'GET' request
+    post: Passes over that information to "scholarGuide/schools.html"
+    """
+
+
+
+
 
 
 def search(request):
